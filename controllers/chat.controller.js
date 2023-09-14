@@ -1,8 +1,12 @@
 import { Configuration, OpenAIApi } from "openai";
 import axios from "axios";
 
+// const openAIConfig = new Configuration({
+//   apiKey: "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",
+// });
 const openAIConfig = new Configuration({
-  apiKey: "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",
+  organization: "org-2X7IgOvrKhPctJ5ExxObqG6R",
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openapi = new OpenAIApi(openAIConfig);
@@ -33,7 +37,13 @@ export const chatCompletion = async (req, res) => {
     });
   }
 };
-
+// import { Configuration, OpenAIApi } from "openai";
+// const configuration = new Configuration({
+//     organization: "YOUR_ORG_ID",
+//     apiKey: process.env.OPENAI_API_KEY,
+// });
+// const openai = new OpenAIApi(configuration);
+// const response = await openai.listEngines();
 // export const chatCompletion = async (req, res) => {
 //   const instance = axios.create({
 //     // 代理配置
