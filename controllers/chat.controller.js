@@ -8,28 +8,27 @@ const openAIConfig = new Configuration({
 const openapi = new OpenAIApi(openAIConfig);
 
 export const chatCompletion = async (req, res) => {
-  if (req.user.class === 0) {
-    res.status(200).json({ text: "请购买付费用户后使用!" });
-    // throw new Error("请购买付费用户后使用!");
-  }
   try {
     const { prompt } = req.body;
     console.log(prompt);
-    const answer = await openapi.createCompletion({
-      model: "text-davinci-003",
-      prompt: prompt,
-      temperature: 0,
-      max_tokens: 3000,
-    });
+    // const answer = await openapi.createCompletion({
+    //   model: "text-davinci-003",
+    //   prompt: prompt,
+    //   temperature: 0,
+    //   max_tokens: 3000,
+    // });
 
-    const text = answer.data.choices[0].text;
-    // const text = "answer.data.choices[0].text";
-    res.status(200).json({ text });
-  } catch (Error) {
-    console.log(Error.message);
+    // const text = answer.data.choices[0].text;
+    if (req.user.class === 0) {
+      throw new Error("请购买付费用户后使用!");
+    }
+
+    res.status(200).json({ text: "this is the result" });
+  } catch (err) {
+    console.log(err.message);
 
     res.status(500).json({
-      message: Error.message,
+      message: err.message,
     });
   }
 };
