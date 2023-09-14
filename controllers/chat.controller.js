@@ -8,6 +8,10 @@ const openAIConfig = new Configuration({
 const openapi = new OpenAIApi(openAIConfig);
 
 export const chatCompletion = async (req, res) => {
+  if (req.user.class === 0) {
+    // throw new Error();
+    res.status(200).json({ text: "请购买付费用户后使用!" });
+  }
   try {
     const { prompt } = req.body;
     console.log(prompt);
@@ -19,11 +23,8 @@ export const chatCompletion = async (req, res) => {
     });
 
     const text = answer.data.choices[0].text;
-    if (req.user.class === 0) {
-      throw new Error("请购买付费用户后使用!");
-    }
 
-    res.status(200).json({ text: "this is the result" });
+    res.status(200).json({ text });
   } catch (err) {
     console.log(err.message);
 
