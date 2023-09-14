@@ -2,7 +2,7 @@ import { Configuration, OpenAIApi } from "openai";
 import axios from "axios";
 
 const openAIConfig = new Configuration({
-  apiKey: "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",
+  apiKey: process.env.OPENAI_KEY,
 });
 
 const openapi = new OpenAIApi(openAIConfig);
