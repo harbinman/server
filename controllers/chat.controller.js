@@ -11,14 +11,14 @@ export const chatCompletion = async (req, res) => {
   try {
     const { prompt } = req.body;
     console.log(prompt);
-    // const answer = await openapi.createCompletion({
-    //   model: "text-davinci-003",
-    //   prompt: prompt,
-    //   temperature: 0,
-    //   max_tokens: 3000,
-    // });
+    const answer = await openapi.createCompletion({
+      model: "text-davinci-003",
+      prompt: prompt,
+      temperature: 0,
+      max_tokens: 3000,
+    });
 
-    // const text = answer.data.choices[0].text;
+    const text = answer.data.choices[0].text;
     if (req.user.class === 0) {
       throw new Error("请购买付费用户后使用!");
     }
