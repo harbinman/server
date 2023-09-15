@@ -5,8 +5,8 @@ const openAIConfig = new Configuration({
   apiKey: process.env.OPENAI_KEY,
 });
 
-// const openapi = new OpenAIApi(openAIConfig);
-const openai = new OpenAIApi(openAIConfig);
+const openapi = new OpenAIApi(openAIConfig);
+
 export const chatCompletion = async (req, res) => {
   if (req.user.class === 0) {
     // throw new Error();
@@ -16,18 +16,18 @@ export const chatCompletion = async (req, res) => {
     const { prompt } = req.body;
     console.log(prompt);
 
-    // const answer = await openapi.createCompletion({
-    //   model: "davinci",
-    //   prompt: prompt,
-    //   max_tokens: 100,
-    // });
-    // const text = answer.data.choices[0].text;
-    const answer = await openai.chat.completions.create({
-      messages: [{ role: "system", content: prompt }],
-      model: "gpt-3.5-turbo",
+    const answer = await openapi.createCompletion({
+      model: "davinci",
+      prompt: prompt,
+      max_tokens: 100,
     });
-    console.log(answer);
-    const text = answer.data.choices[0].message.content;
+    const text = answer.data.choices[0].text;
+    // const answer = await openai.chat.completions.create({
+    //   messages: [{ role: "system", content: prompt }],
+    //   model: "gpt-3.5-turbo",
+    // });
+    // console.log(answer);
+    // const text = answer.data.choices[0].message.content;
 
     res.status(200).json({ text });
   } catch (err) {
