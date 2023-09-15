@@ -17,10 +17,10 @@ export const chatCompletion = async (req, res) => {
     console.log(prompt);
 
     const answer = await openapi.createCompletion({
-      model: "gpt-3.5-turbo",
+      model: "davinci",
       prompt: prompt,
       temperature: 0,
-      max_tokens: 3000,
+      max_tokens: 100,
     });
     const text = answer.data.choices[0].text;
     // const answer = await openapi.createCompletion({
