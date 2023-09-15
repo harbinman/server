@@ -2,6 +2,7 @@ import { Configuration, OpenAIApi } from "openai";
 import axios from "axios";
 
 const openAIConfig = new Configuration({
+  organization: "org-2X7IgOvrKhPctJ5ExxObqG6R",
   apiKey: process.env.OPENAI_KEY,
 });
 
@@ -15,14 +16,18 @@ export const chatCompletion = async (req, res) => {
   try {
     const { prompt } = req.body;
     console.log(prompt);
-
-    const answer = await openapi.createCompletion({
-      model: "text-davinci-003",
-      prompt: prompt,
-      temperature: 0,
-      max_tokens: 3000,
+    const answer = await openapi.createChatCompletion({
+      messages: [{ role: "user", content: prompt }],
+      model: "gpt-3.5-turbo",
     });
-    const text = answer.data.choices[0].text;
+    const text = answer.data.choices[0].message.content;
+    // const answer = await openapi.createCompletion({
+    //   model: "text-davinci-003",
+    //   prompt: prompt,
+    //   temperature: 0,
+    //   max_tokens: 3000,
+    // });
+    // const text = answer.data.choices[0].text;
     // const answer = await openapi.chatCompletion({
     //   messages: [{ role: "system", content: prompt }],
     //   model: "gpt-3.5-turbo",
@@ -40,6 +45,7 @@ export const chatCompletion = async (req, res) => {
   }
 };
 
+main();
 // export const chatCompletion = async (req, res) => {
 //   const instance = axios.create({
 //     // 代理配置
