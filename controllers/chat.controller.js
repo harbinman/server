@@ -22,7 +22,7 @@ export const chatCompletion = async (req, res) => {
     //   max_tokens: 100,
     // });
     // const text = answer.data.choices[0].text;
-    const answer = await openai.chat.completions.create({
+    const answer = await openapi.chat.completions.create({
       messages: [{ role: "system", content: prompt }],
       model: "gpt-3.5-turbo",
     });
