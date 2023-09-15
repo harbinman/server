@@ -45,7 +45,6 @@ export const chatCompletion = async (req, res) => {
   }
 };
 
-main();
 // export const chatCompletion = async (req, res) => {
 //   const instance = axios.create({
 //     // 代理配置
