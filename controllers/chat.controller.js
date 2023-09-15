@@ -16,19 +16,18 @@ export const chatCompletion = async (req, res) => {
     const { prompt } = req.body;
     console.log(prompt);
 
-    const answer = await openapi.createCompletion({
-      model: "davinci",
-      prompt: prompt,
-      temperature: 0,
-      max_tokens: 100,
-    });
-    const text = answer.data.choices[0].text;
     // const answer = await openapi.createCompletion({
-    //   messages: [{ role: "system", content: prompt }],
-    //   model: "gpt-3.5-turbo",
+    //   model: "davinci",
+    //   prompt: prompt,
+    //   max_tokens: 100,
     // });
+    // const text = answer.data.choices[0].text;
+    const answer = await openai.chat.completions.create({
+      messages: [{ role: "system", content: prompt }],
+      model: "gpt-3.5-turbo",
+    });
 
-    // const text = answer.data.choices[0].message.content;
+    const text = answer.data.choices[0].message.content;
 
     res.status(200).json({ text });
   } catch (err) {
