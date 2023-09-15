@@ -26,7 +26,7 @@ export const chatCompletion = async (req, res) => {
       messages: [{ role: "system", content: prompt }],
       model: "gpt-3.5-turbo",
     });
-
+    console.log(answer);
     const text = answer.data.choices[0].message.content;
 
     res.status(200).json({ text });
