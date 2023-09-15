@@ -5,8 +5,8 @@ const openAIConfig = new Configuration({
   apiKey: process.env.OPENAI_KEY,
 });
 
-const openapi = new OpenAIApi(openAIConfig);
-const openai = new OpenAI(openAIConfig);
+// const openapi = new OpenAIApi(openAIConfig);
+const openai = new OpenAIApi(openAIConfig);
 export const chatCompletion = async (req, res) => {
   if (req.user.class === 0) {
     // throw new Error();
