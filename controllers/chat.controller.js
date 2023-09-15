@@ -24,7 +24,7 @@ export const chatCompletion = async (req, res) => {
 
     // });
     // const text = answer.data.choices[0].text;
-    const answer = await openapi.chatCompletion({
+    const answer = await openapi.createCompletion({
       messages: [{ role: "system", content: prompt }],
       model: "gpt-3.5-turbo",
     });
