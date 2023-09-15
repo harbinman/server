@@ -2,6 +2,7 @@ import { Configuration, OpenAIApi } from "openai";
 import axios from "axios";
 
 const openAIConfig = new Configuration({
+  organization: "org-2X7IgOvrKhPctJ5ExxObqG6R",
   apiKey: process.env.OPENAI_KEY,
 });
 
@@ -19,15 +20,8 @@ export const chatCompletion = async (req, res) => {
       messages: [{ role: "user", content: prompt }],
       model: "gpt-3.5-turbo",
     });
-    const text = answer.data.choices[0].message.content;
-    // const answer = await openapi.createCompletion({
-    //   model: "text-davinci-003",
-    //   prompt: prompt,
-    //   temperature: 0,
-    //   max_tokens: 3000,
-    // });
 
-    // const text = answer.data.choices[0].text;
+    const text = answer.data.choices[0].text;
 
     res.status(200).json({ text });
   } catch (err) {
