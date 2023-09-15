@@ -1,4 +1,4 @@
-import { Configuration, OpenAIApi } from "openai";
+import { Configuration, OpenAIApi, openai } from "openai";
 import axios from "axios";
 
 const openAIConfig = new Configuration({
@@ -6,7 +6,7 @@ const openAIConfig = new Configuration({
 });
 
 const openapi = new OpenAIApi(openAIConfig);
-
+const openai = new OpenAI(openAIConfig);
 export const chatCompletion = async (req, res) => {
   if (req.user.class === 0) {
     // throw new Error();
@@ -22,7 +22,7 @@ export const chatCompletion = async (req, res) => {
     //   max_tokens: 100,
     // });
     // const text = answer.data.choices[0].text;
-    const answer = await openapi.chat.completions.create({
+    const answer = await openai.chat.completions.create({
       messages: [{ role: "system", content: prompt }],
       model: "gpt-3.5-turbo",
     });
