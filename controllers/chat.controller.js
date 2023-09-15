@@ -1,4 +1,4 @@
-import { Configuration, OpenAIApi, openai } from "openai";
+import { Configuration, OpenAIApi } from "openai";
 import axios from "axios";
 
 const openAIConfig = new Configuration({
@@ -17,16 +17,17 @@ export const chatCompletion = async (req, res) => {
     console.log(prompt);
 
     const answer = await openapi.createCompletion({
-      model: "davinci",
+      model: "text-davinci-003",
       prompt: prompt,
-      max_tokens: 100,
+      temperature: 0,
+      max_tokens: 3000,
     });
     const text = answer.data.choices[0].text;
-    // const answer = await openai.chat.completions.create({
+    // const answer = await openapi.chatCompletion({
     //   messages: [{ role: "system", content: prompt }],
     //   model: "gpt-3.5-turbo",
     // });
-    // console.log(answer);
+
     // const text = answer.data.choices[0].message.content;
 
     res.status(200).json({ text });
