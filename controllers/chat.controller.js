@@ -10,8 +10,8 @@ const openapi = new OpenAIApi(openAIConfig);
 
 export const chatCompletion = async (req, res) => {
   if (req.user.class === 0) {
-    // throw new Error();
-    res.status(200).json({ text: "请购买付费用户后使用!" });
+    throw new Error("请购买付费用户后使用!");
+    // res.status(200).json({ text: "请购买付费用户后使用!" });
   }
   try {
     const { prompt } = req.body;
