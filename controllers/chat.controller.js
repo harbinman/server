@@ -9,21 +9,21 @@ const openAIConfig = new Configuration({
 const openapi = new OpenAIApi(openAIConfig);
 
 export const chatCompletion = async (req, res) => {
-  if (req.user.class === 0) {
-    throw new Error("请购买付费用户后使用!");
-    // res.status(200).json({ text: "请购买付费用户后使用!" });
-  }
   try {
+    if (req.user.class === 0) {
+      throw new Error("请购买付费用户后使用!");
+      // res.status(200).json({ text: "请购买付费用户后使用!" });
+    }
     const { prompt } = req.body;
     console.log(prompt);
-    const answer = await openapi.createChatCompletion({
-      messages: [{ role: "user", content: prompt }],
-      model: "gpt-3.5-turbo",
-    });
+    // const answer = await openapi.createChatCompletion({
+    //   messages: [{ role: "user", content: prompt }],
+    //   model: "gpt-3.5-turbo",
+    // });
 
-    const text = answer.data.choices[0].message.content;
+    // const text = answer.data.choices[0].message.content;
 
-    res.status(200).json({ text });
+    res.status(200).json({ text: "result" });
   } catch (err) {
     console.log(err.message);
 
