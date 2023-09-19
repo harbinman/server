@@ -6,7 +6,7 @@ const openAIConfig = new Configuration({
   organization: "org-2X7IgOvrKhPctJ5ExxObqG6R",
   apiKey: process.env.OPENAI_KEY,
 });
-const messages = []; // 初始化一个空数组来存储消息
+let messages = []; // 初始化一个空数组来存储消息
 const openapi = new OpenAIApi(openAIConfig);
 
 export const chatCompletion = async (req, res) => {
