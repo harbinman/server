@@ -34,7 +34,8 @@ export const chatCompletion = async (req, res) => {
       });
     console.log(filteredMessages);
     const answer = await openapi.createChatCompletion({
-      messages: [{ role: "user", content: filteredMessages }],
+      // messages: [{ role: "user", content: filteredMessages }],
+      messages: filteredMessages,
       model: "gpt-3.5-turbo",
     });
 
